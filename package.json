@@ -5,11 +5,16 @@
   "author": "ItzCrazyKns",
   "scripts": {
     "start": "npm run db:push && node dist/app.js",
-    "build": "tsc",
     "dev": "nodemon src/app.ts",
     "db:push": "drizzle-kit push sqlite",
     "format": "prettier . --check",
-    "format:write": "prettier . --write"
+    "format:write": "prettier . --write",
+    "install": "npm run install-root && cd ../ui && npm install",
+    "build": "npm run install-root && cd ../ui && npm run build-root && npm run build",
+    "start": "cd .. && npm run start-root",
+    "install-root": "npm --prefix .. install",
+    "build-root": "npm --prefix .. tsc",
+    "start-root": "npm --prefix .. run start"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.10",
